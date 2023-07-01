@@ -60,9 +60,10 @@ export class AlarmBotClient extends Client {
     this.login(this.config.token);
   }
 
-  private onReady() {
+  private async onReady() {
+    const currentUser = await this.getCurrentUser();
     console.log(
-      `Bot Online!\nID: ${this?.user?.id}\nName: ${this?.user?.username}`
+      `Bot Online!\nID: ${this?.user?.id}\nName: ${this?.user?.username}\nUser: ${currentUser?.username}\nUser Id: ${currentUser?.id}`
     );
     this.startCheckingDaemon();
   }
